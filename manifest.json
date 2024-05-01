@@ -7,8 +7,13 @@
     "author": "euny0ung",
     "content_scripts": [
         {
+            "matches": ["https://www.acmicpc.net/*"],
+            "js": ["scripts/util.js", "scripts/parsing.js", "scripts/baekjoon.js"],
+            "run_at": "document_idle"
+        },
+        {
             "matches": ["<all_urls>"],
-            "js": ["index.js"]
+            "js": ["popup/popup.js"]
         }
     ],
     "icons": {
@@ -21,5 +26,7 @@
         "default_icon": "images/logo.png",
         "default_title": "AlgoNote",
         "default_popup": "popup/popup.html"
-    }
+    },
+    "permissions": ["unlimitedStorage", "storage", "declarativeNetRequest", "declarativeNetRequestWithHostAccess"],
+    "host_permissions": ["https://www.acmicpc.net/", "https://solved.ac/api/v3/*"]
 }
