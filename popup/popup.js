@@ -1,7 +1,19 @@
-const btn = document.querySelector('button');
-
-console.log('실행은 되네요');
-
-btn.addEventListener('click', function () {
-    console.log('실행');
+document.addEventListener('DOMContentLoaded', function () {
+    const btn = document.querySelector('button');
+    btn.addEventListener('click', () => {
+        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+            chrome.tabs.sendMessage(
+                tabs[0].id,
+                {
+                    type: 'test',
+                    payload: {
+                        message: '안녕@!!',
+                    },
+                },
+                (response) => {
+                    console.log(response);
+                }
+            );
+        });
+    });
 });
