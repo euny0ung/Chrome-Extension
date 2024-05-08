@@ -1,16 +1,34 @@
-const { checkResultTable } = require('./parsing');
-
-alert('실행은 됩니다...');
+// alert('실행은 됩니다...');
 
 const currentUrl = window.location.href;
 
-let c = console.log.bind(document);
+const isNull = (value) => {
+    return value === null;
+};
+
+const isEmpty = (value) => {
+    return value === null || value === undefined || value === '';
+};
+
+const programStart = async () => {
+    // 결과 리스트 파싱
+    const table = checkResultTable();
+
+    chrome.storage.local.set({ tableData: table });
+
+    // alert('실행됨');
+
+    chrome.runtime.sendMessage({ type: 'sendTable', tableData: table });
+
+    // const bojData = await getAllData();
+    // c(bojData);
+};
 
 const getUserName = () => {
     const element = document.querySelector('a.username');
     if (isNull(element)) return null;
 
-    const username = el?.innerText?.trim();
+    const username = element?.innerText?.trim();
     if (isEmpty(username)) return null;
     return username;
 };
@@ -23,13 +41,3 @@ if (!isNull(username)) {
     if (['status', `user_id=${username}`, 'problem_id', 'from_mine=1'].every((key) => currentUrl.includes(key)))
         programStart();
 }
-
-const programStart = async () => {
-    // 결과 리스트 파싱
-    const table = checkResultTable();
-
-    chrome.storage.local.set({ tableData: table });
-
-    // const bojData = await getAllData();
-    // c(bojData);
-};

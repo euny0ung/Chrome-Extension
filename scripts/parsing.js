@@ -1,5 +1,3 @@
-const { convertResultTableHeader } = require('./util');
-
 let c = console.log.bind(document);
 
 const getAllData = async () => {};
@@ -15,12 +13,19 @@ const checkResultTable = () => {
     return parsingResultTable(document);
 };
 
+const unescapeHtml = (html) => {
+    const textArea = document.createElement('textarea');
+    textArea.innerHTML = html;
+    return textArea.value;
+};
+
 // 제출 정보 파싱
 const parsingResultTable = () => {
     const table = document.getElementById('status-table');
     // 예외처리 추후 추가예정
 
-    const headers = Array.from(table.row[0].cells, (x) => convertResultTableHeader(x.innerText.trim()));
+    // 테이블 카테고리
+    const headers = Array.from(table.rows[0].cells, (x) => convertResultTableHeader(x.innerText.trim()));
 
     const list = [];
     for (let i = 1; i < table.rows.length; i++) {
@@ -35,7 +40,7 @@ const parsingResultTable = () => {
                         resultCategory: x.firstChild.getAttribute('data-color').replace('-eng', '').trim(),
                     };
                 case 'language':
-                    return x.innerText.unescapeHtml().replace(/\/.*$/g, '').trim();
+                    return unescapeHtml(x.innerText).replace(/\/.*$/g, '').trim();
                 case 'memory':
                     return x.innerText.trim();
                 case 'runtime':
@@ -64,7 +69,7 @@ const parsingResultTable = () => {
         obj = { ...obj, ...obj.result, ...obj.problemId };
         list.push(obj);
     }
-    log('TableList', list);
+
     return list;
 };
 
@@ -76,4 +81,4 @@ const getSubmitCode = async (submissionId) => {
     return code;
 };
 
-module.exports = { getAllData, isExistResultTable, checkResultTable, parsingResultTable };
+// module.exports = { getAllData, isExistResultTable, checkResultTable, parsingResultTable };

@@ -3,13 +3,14 @@
     "name": "알고노트 (AlgoNote)",
     "description": "편리하게 알고리즘 오답노트를 작성해보세요.",
     "homepage_url": "https://algnote.duckdns.org/home",
-    "version": "1.0",
+    "version": "1.1",
     "author": "euny0ung",
     "content_scripts": [
         {
             "matches": ["https://www.acmicpc.net/*"],
-            "js": ["scripts/util.js", "scripts/parsing.js", "scripts/baekjoon.js"],
-            "type": "module"
+            "js": ["scripts/parsing.js", "scripts/util.js", "scripts/baekjoon.js"],
+            "type": "module",
+            "run_at": "document_idle"
         },
         { "matches": ["<all_urls>"], "js": ["contentscript/contentscript.js"] }
     ],
@@ -36,5 +37,28 @@
         "activeTab",
         "tabs"
     ],
-    "host_permissions": ["https://www.acmicpc.net/", "https://solved.ac/api/v3/*"]
+    "declarative_net_request": {
+        "rule_resources": [
+            {
+                "id": "ruleset",
+                "enabled": true,
+                "path": "rules.json"
+            }
+        ]
+    },
+    "host_permissions": ["https://www.acmicpc.net/", "https://solved.ac/api/v3/*"],
+    "web_accessible_resources": [
+        {
+            "matches": ["<all_urls>"],
+            "resources": [
+                "library/jquery-3.3.1.min.js",
+                "library/semantic.min.js",
+                "scripts/baekjoon.js",
+                "scripts/parsing.js",
+                "scripts/util.js",
+                "popup/popup.html",
+                "popup/popup.js"
+            ]
+        }
+    ]
 }

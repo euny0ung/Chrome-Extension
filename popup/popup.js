@@ -1,3 +1,5 @@
+// 확장 아이콘 클릭했을 때 실행됨
+
 document.addEventListener('DOMContentLoaded', function () {
     const btn = document.querySelector('button');
     btn.addEventListener('click', () => {
