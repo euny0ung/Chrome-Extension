@@ -74,7 +74,7 @@ const parsingResultTable = () => {
 };
 
 // 제출 코드 파싱
-const getSubmitCode = async (submissionId) => {
+const getSubmitCode = (submissionId) => {
     let code = fetch(`https://www.acmicpc.net/source/download/${submissionId}`, { method: 'GET' }).then((res) =>
         res.text()
     );

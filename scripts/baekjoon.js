@@ -13,12 +13,19 @@ const isEmpty = (value) => {
 const programStart = async () => {
     // 결과 리스트 파싱
     const table = checkResultTable();
+    let codeArr = [];
 
-    chrome.storage.local.set({ tableData: table });
+    // chrome.storage.local.set({ tableData: table });
 
     // alert('실행됨');
 
-    chrome.runtime.sendMessage({ type: 'sendTable', tableData: table });
+    for (const ele of table) {
+        const submissionId = Number(ele.submissionId);
+        const code = getSubmitCode(submissionId);
+        codeArr.push(code);
+    }
+
+    chrome.runtime.sendMessage({ type: 'sendTable', tableData: table, submitCode: codeArr });
 
     // const bojData = await getAllData();
     // c(bojData);
