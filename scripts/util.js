@@ -29,4 +29,4 @@ const convertResultTableHeader = (header) => {
     }
 };
 
-export default convertResultTableHeader;
+module.exports = { convertResultTableHeader };

@@ -8,7 +8,8 @@
     "content_scripts": [
         {
             "matches": ["https://www.acmicpc.net/*"],
-            "js": ["scripts/util.js", "scripts/parsing.js", "scripts/baekjoon.js"]
+            "js": ["scripts/util.js", "scripts/parsing.js", "scripts/baekjoon.js"],
+            "type": "module"
         },
         { "matches": ["<all_urls>"], "js": ["contentscript/contentscript.js"] }
     ],
@@ -30,7 +31,6 @@
     "permissions": [
         "storage",
         "unlimitedStorage",
-        "storage",
         "declarativeNetRequest",
         "declarativeNetRequestWithHostAccess",
         "activeTab",

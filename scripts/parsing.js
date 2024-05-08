@@ -1,16 +1,14 @@
-import { convertResultTableHeader } from './util.js';
+const { convertResultTableHeader } = require('./util');
 
 let c = console.log.bind(document);
 
-export const getAllData=async()=>{
-    
-}
+const getAllData = async () => {};
 
-export const isExistResultTable = () => {
+const isExistResultTable = () => {
     return document.getElementById('status-table') !== null;
 };
 
-export const checkResultTable = () => {
+const checkResultTable = () => {
     if (!isExistResultTable()) {
         c('결과가 없습니다');
     }
@@ -77,3 +75,5 @@ const getSubmitCode = async (submissionId) => {
     );
     return code;
 };
+
+module.exports = { getAllData, isExistResultTable, checkResultTable, parsingResultTable };

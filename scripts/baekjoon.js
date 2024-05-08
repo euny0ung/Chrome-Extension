@@ -1,6 +1,6 @@
-import { checkResultTable } from './parsing';
+const { checkResultTable } = require('./parsing');
 
-console.log('실행은 됩니다...');
+alert('실행은 됩니다...');
 
 const currentUrl = window.location.href;
 
@@ -27,7 +27,8 @@ if (!isNull(username)) {
 const programStart = async () => {
     // 결과 리스트 파싱
     const table = checkResultTable();
-    console.log('결과 데이터', table);
+
+    chrome.storage.local.set({ tableData: table });
 
     // const bojData = await getAllData();
     // c(bojData);
