@@ -73,12 +73,13 @@ const parsingResultTable = () => {
     return list;
 };
 
-// 제출 코드 파싱
-const getSubmitCode = (submissionId) => {
-    let code = fetch(`https://www.acmicpc.net/source/download/${submissionId}`, { method: 'GET' }).then((res) =>
+// 제출 코드 직접 파싱
+const getSubmitCode = async (submissionId) => {
+    const code = await fetch(`https://www.acmicpc.net/source/download/${submissionId}`, { method: 'GET' }).then((res) =>
         res.text()
     );
+    console.log(code);
     return code;
 };
 
-// module.exports = { getAllData, isExistResultTable, checkResultTable, parsingResultTable };
+// 제출 코드 캐시에서 파싱

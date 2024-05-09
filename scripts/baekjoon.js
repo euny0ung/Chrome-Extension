@@ -15,13 +15,9 @@ const programStart = async () => {
     const table = checkResultTable();
     let codeArr = [];
 
-    // chrome.storage.local.set({ tableData: table });
-
-    // alert('실행됨');
-
     for (const ele of table) {
         const submissionId = Number(ele.submissionId);
-        const code = getSubmitCode(submissionId);
+        const code = await getSubmitCode(submissionId);
         codeArr.push(code);
     }
 

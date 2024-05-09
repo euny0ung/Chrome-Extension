@@ -3,8 +3,8 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.type === 'sendTable') {
         console.log('Received table data from content script:', message.tableData);
         console.log('제출코드', message.submitCode);
-        // 여기에서 추가적으로 API 호출을 할 수 있습니다.
-        sendDataToAPI(message.tableData);
+        // 여기에서 API 호출
+        // sendDataToAPI(message.tableData);
     }
 });
 
