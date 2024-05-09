@@ -19,11 +19,11 @@ const convertResultTableHeader = (header) => {
         case '제출한 시간':
             return 'submissionTime';
         case '시간':
-            return 'runtime';
+            return 'runningTime';
         case '메모리':
-            return 'memory';
+            return 'memorySize';
         case '코드 길이':
-            return 'codeLength';
+            return 'length';
         default:
             return 'unknown';
     }

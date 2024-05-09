@@ -37,15 +37,14 @@ const parsingResultTable = () => {
                 case 'result':
                     return {
                         result: x.innerText.trim(),
-                        resultCategory: x.firstChild.getAttribute('data-color').replace('-eng', '').trim(),
                     };
                 case 'language':
                     return unescapeHtml(x.innerText).replace(/\/.*$/g, '').trim();
-                case 'memory':
+                case 'memorySize':
                     return x.innerText.trim();
-                case 'runtime':
+                case 'runningTime':
                     return x.innerText.trim();
-                case 'codeLength':
+                case 'length':
                     return x.innerText.trim();
                 case 'submissionTime':
                     const el = x.querySelector('a.show-date');
@@ -62,7 +61,6 @@ const parsingResultTable = () => {
             }
         });
         let obj = {};
-        obj.elementId = row.id;
         for (let j = 0; j < headers.length; j++) {
             obj[headers[j]] = cells[j];
         }
