@@ -28,5 +28,3 @@ const convertResultTableHeader = (header) => {
             return 'unknown';
     }
 };
-
-// module.exports = { convertResultTableHeader };
