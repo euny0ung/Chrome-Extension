@@ -1,16 +1,38 @@
 let c = console.log.bind(document);
+let timerId = null;
 
 const getAllData = async () => {};
 
 const isExistResultTable = () => {
-    return document.getElementById('status-table') !== null;
+    return document.getElementById('status-table').length !== null;
+};
+
+// 채점중인 데이터가 있는지 확인
+const isCheckingResult = () => {
+    const problemResult = document.querySelectorAll(
+        'span[data-color="wait"], span[data-color="judging"], span[data-color="compile"]'
+    );
+
+    if (problemResult.length > 0) return true;
+
+    return false;
 };
 
 const checkResultTable = () => {
-    if (!isExistResultTable()) {
-        c('결과가 없습니다');
-    }
-    return parsingResultTable(document);
+    return new Promise((resolve, reject) => {
+        const check = () => {
+            if (!isExistResultTable()) {
+                alert('결과가 없습니다');
+                reject(new Error('결과 테이블이 존재하지 않습니다.'));
+            } else if (isCheckingResult()) {
+                clearTimeout(timerId);
+                timerId = setTimeout(check, 2000);
+            } else {
+                resolve(parsingResultTable(document));
+            }
+        };
+        check();
+    });
 };
 
 const unescapeHtml = (html) => {

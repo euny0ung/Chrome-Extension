@@ -1,5 +1,6 @@
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     console.log('백그라운드 실행됨');
+
     if (message.type === 'sendTable') {
         console.log('Received table data from content script:', message.tableData);
 
@@ -8,19 +9,21 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
                 // console.log('백그라운드 쿠키 있음', cookie.value);
                 sendDataToAPI(message.tableData, cookie.value);
             } else {
-                alert('재로그인이 필요합니다');
+                const alert = console.log.bind(console);
+                alert('서비스 재로그인 후 제출 페이지를 새로고침해주세요'); // 내가 새로고침되게 만들까
             }
         });
     }
 });
 
 function sendDataToAPI(tableData, cookie) {
-    fetch('https://algnote.duckdns.org', {
+    fetch('https://algnote.duckdns.org/api/submissions', {
         method: 'POST',
         headers: {
             Authorization: `Bearer ${cookie}`,
+            'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ data: tableData }),
+        body: JSON.stringify({ tableData }),
     })
         .then((response) => response.text())
         .then((text) => {
