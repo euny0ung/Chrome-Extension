@@ -55,7 +55,7 @@ const parsingResultTable = () => {
         const cells = Array.from(row.cells, (x, index) => {
             switch (headers[index]) {
                 case 'submissionId':
-                    return x.innerText.trim();
+                    return Number(x.innerText.trim());
                 case 'result':
                     return {
                         result: x.innerText.trim(),
@@ -63,17 +63,17 @@ const parsingResultTable = () => {
                 case 'language':
                     return unescapeHtml(x.innerText).replace(/\/.*$/g, '').trim();
                 case 'memorySize':
-                    return x.innerText.trim();
+                    return Number(x.innerText.trim());
                 case 'runningTime':
-                    return x.innerText.trim();
+                    return Number(x.innerText.trim());
                 case 'length':
-                    return x.innerText.trim();
+                    return Number(x.innerText.trim());
                 case 'submissionTime':
                     const el = x.querySelector('a.show-date');
                     if (isNull(el)) return null;
                     return el.getAttribute('data-original-title');
                 case 'problemId':
-                    const a = x.querySelector('a.problem_title');
+                    const a = Number(x.querySelector('a.problem_title'));
                     if (isNull(a)) return null;
                     return {
                         problemId: a.getAttribute('href').replace(/^.*\/([0-9]+)$/, '$1'),
