@@ -73,7 +73,7 @@ const parsingResultTable = () => {
                     if (isNull(el)) return null;
                     return el.getAttribute('data-original-title');
                 case 'problemId':
-                    const a = Number(x.querySelector('a.problem_title'));
+                    const a = x.querySelector('a.problem_title');
                     if (isNull(a)) return null;
                     return {
                         problemId: a.getAttribute('href').replace(/^.*\/([0-9]+)$/, '$1'),
