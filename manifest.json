@@ -28,7 +28,7 @@
         "default_title": "AlgoNote",
         "default_popup": "popup/popup.html"
     },
-    "permissions": ["storage", "declarativeNetRequest", "declarativeNetRequestWithHostAccess", "cookies"],
+    "permissions": ["declarativeNetRequest", "declarativeNetRequestWithHostAccess", "cookies"],
     "declarative_net_request": {
         "rule_resources": [
             {
