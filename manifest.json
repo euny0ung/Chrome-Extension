@@ -3,7 +3,7 @@
     "name": "알고노트 (AlgoNote)",
     "description": "편리하게 알고리즘 오답노트를 작성해보세요.",
     "homepage_url": "https://algnote.duckdns.org/",
-    "version": "1.2",
+    "version": "1.2.1",
     "author": "euny0ung",
     "content_scripts": [
         {
