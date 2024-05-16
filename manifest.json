@@ -3,12 +3,18 @@
     "name": "알고노트 (AlgoNote)",
     "description": "편리하게 알고리즘 오답노트를 작성해보세요.",
     "homepage_url": "https://algnote.duckdns.org/",
-    "version": "1.3",
+    "version": "1.4.1",
     "author": "euny0ung",
     "content_scripts": [
         {
             "matches": ["https://www.acmicpc.net/*"],
             "js": ["scripts/parsing.js", "scripts/util.js", "scripts/baekjoon.js"],
+            "type": "module",
+            "run_at": "document_idle"
+        },
+        {
+            "matches": ["https://algnote.duckdns.org/*"],
+            "js": ["scripts/algonote.js"],
             "type": "module",
             "run_at": "document_idle"
         }
@@ -33,8 +39,6 @@
         "declarativeNetRequestWithHostAccess",
         "cookies",
         "notifications",
-        "tabs",
-        "webNavigation",
         "storage"
     ],
     "declarative_net_request": {
