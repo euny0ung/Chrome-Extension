@@ -49,18 +49,18 @@ function createLoginNotification(tabId, originUrl, tableData) {
 }
 
 // 로그인 후 원래 페이지로 돌아가는 로직 추가
-// chrome.webNavigation.onCompleted.addListener(
-//     function (details) {
-//         chrome.storage.local.get(['redirectTabId', 'originUrl', 'tableData'], function (data) {
-//             if (data.redirectTabId && data.originUrl && details.url === 'https://algnote.duckdns.org/') {
-//                 console.log(data.redirectTabId, data.originUrl, details.url);
-//                  chrome.tabs.update(data.redirectTabId, { url: data.originUrl }, function () {
-//                 chrome.storage.local.remove(['redirectTabId', 'originUrl', 'tableData']); // 저장된 값을 제거
-//             })
-//         });
-//     },
-//     { url: [{ urlMatches: 'https://algnote.duckdns.org/' }] }
-// );
+chrome.webNavigation.onCommitted.addListener(
+    function (details) {
+        chrome.storage.local.get(['redirectTabId', 'originUrl'], function (data) {
+            if (data.redirectTabId && data.originUrl && details.url === 'https://algnote.duckdns.org/') {
+                chrome.tabs.reload(data.redirectTabId, function () {
+                    chrome.storage.local.remove(['redirectTabId', 'originUrl']); // 저장된 값을 제거
+                });
+            }
+        });
+    },
+    { url: [{ urlMatches: 'https://algnote.duckdns.org/' }] }
+);
 
 function sendDataToAPI(tableData, cookie, tabId) {
     fetch('https://algnote.duckdns.org/api/submissions', {
