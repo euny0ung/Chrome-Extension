@@ -49,12 +49,13 @@ function createLoginNotification(tabId, originUrl, tableData) {
 }
 
 // 로그인 후 원래 페이지로 돌아가는 로직 추가
-chrome.webNavigation.onCommitted.addListener(
+chrome.webNavigation.onCompleted.addListener(
     function (details) {
         chrome.storage.local.get(['redirectTabId', 'originUrl'], function (data) {
             if (data.redirectTabId && data.originUrl && details.url === 'https://algnote.duckdns.org/') {
+                console.log('Reloading tab:', data.redirectTabId, 'with URL:', data.originUrl);
                 chrome.tabs.reload(data.redirectTabId, function () {
-                    chrome.storage.local.remove(['redirectTabId', 'originUrl']); // 저장된 값을 제거
+                    chrome.storage.local.remove(['redirectTabId', 'originUrl', 'tableData']); // 저장된 값을 제거
                 });
             }
         });
