@@ -1,6 +1,6 @@
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.type === 'sendTable') {
-        console.log('Received table data from content script:', message.tableData);
+        /// console.log('Received table data from content script:', message.tableData);
 
         chrome.cookies.get({ url: 'https://algnote.duckdns.org', name: 'access_token' }, function (cookie) {
             if (cookie !== null) {
