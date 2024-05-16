@@ -11,7 +11,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
                         type: 'basic',
                         iconUrl: '../images/small_logo.png',
                         title: '로그인 필요',
-                        message: '서비스 로그인 후 제출 페이지를 새로고침해주세요',
+                        message: '서비스 로그인 후 제출 페이지를 새로고침해주세요. 3초 후 로그인 페이지로 이동합니다.',
                     },
                     function (notificationId) {
                         if (chrome.runtime.lastError) {
