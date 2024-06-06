@@ -1,9 +1,8 @@
-# AlgoNote Chrome Extension
+# [AlgoNote Chrome Extension](https://chromewebstore.google.com/detail/%EC%95%8C%EA%B3%A0%EB%85%B8%ED%8A%B8-algonote/jjejbifejcmbnabfpopimjabliklkfbg)
 알고노트 서비스에서 크롬확장프로그램 개발을 담당했습니다.
 main 브랜치에 머지되는 기능이 아닌, 별개의 기능이므로 레포지토리를 따로 생성했습니다.
 
 현재 알고노트 서비스는 종료되었으므로 크롬 익스텐션을 설치하여도 서비스 이용이 불가능합니다.
-[확장프로그램 링크](https://chromewebstore.google.com/detail/%EC%95%8C%EA%B3%A0%EB%85%B8%ED%8A%B8-algonote/jjejbifejcmbnabfpopimjabliklkfbg)
 
 ### 주요 기능
 - 설치 시 알고노트 서비스 페이지가 자동으로 열립니다.
